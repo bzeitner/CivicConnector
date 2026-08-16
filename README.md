@@ -15,11 +15,13 @@ pip install -e .[dev]
 pytest -q
 ```
 
-Status: Phase 0 (repo/CI scaffolding) and Phase 1 (canonical schema +
-fixture-based contract tests) are complete. See `civicconnector/models.py`
-for the schema, `civicconnector/connectors/base.py` for the four-method
-connector interface, and `tests/fixtures/` for pinned live Legistar/CivicClerk
-API responses. Phase 2 (Legistar connector) is next.
+Status: Phase 0 (repo/CI scaffolding), Phase 1 (canonical schema +
+fixture-based contract tests), and Phase 2 (Legistar connector, Olympia
+pilot) are complete. See `civicconnector/models.py` for the schema,
+`civicconnector/connectors/base.py` for the four-method connector interface,
+`civicconnector/connectors/legistar.py` for the Legistar connector and
+per-event coverage table, and `tests/fixtures/` for pinned live
+Legistar/CivicClerk API responses. Phase 3 (CivicClerk connector) is next.
 
 ## Background
 
