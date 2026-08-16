@@ -1,6 +1,7 @@
 # CivicConnector — Implementation Plan
 
-Status: Phase 0 and Phase 1 complete (PR #2). Phase 2 (Legistar connector) is next.
+Status: Phase 0, Phase 1, and Phase 2 complete (Legistar connector, Olympia
+pilot). Phase 3 (CivicClerk connector) is next.
 Source: IdeaFlow idea #32 ("Civic-source connector toolkit"), research entry
 #80 (2026-08-10 live platform probe of Legistar/Granicus, CivicClerk, and
 Municode for Olympia/Lacey/Tumwater, WA).
@@ -67,7 +68,7 @@ never a guess.
 - Exit criteria: fixture-based contract test suite exists and passes
   against recorded (not live) responses.
 
-### Phase 2 — Legistar connector (Olympia pilot)
+### Phase 2 — Legistar connector (Olympia pilot) [done]
 - Implement `list_bodies`, `list_meetings(since)`, `get_items(meeting)`,
   `get_documents(meeting)` against `webapi.legistar.com/v1/olympia`.
 - Paginate under the documented 1000-record cap; handle `$filter`/
@@ -79,7 +80,10 @@ never a guess.
   action vs. roll-call-flagged) as a first-class connector output.
 - Exit criteria: end-to-end pull for a sample of Olympia council/committee
   events matches or exceeds the manually verified figures in research
-  entry #80.
+  entry #80. **Met**: a live pull against events 7259/7258/7257/7256/7255
+  reproduced entry #80's coverage table exactly (items: 4/18/15/13/12;
+  items_with_action: 1/7/5/0/0; roll_call_flagged: 1/2/1/1/1). See
+  `civicconnector/connectors/legistar.py` and `tests/test_legistar_connector.py`.
 
 ### Phase 3 — CivicClerk connector (Lacey pilot)
 - Implement the same four-method interface against

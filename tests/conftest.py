@@ -34,3 +34,8 @@ def legistar_matter_histories():
 @pytest.fixture
 def civicclerk_events():
     return load_fixture("civicclerk_events.json")
+
+
+@pytest.fixture
+def legistar_bodies():
+    return load_fixture("legistar_bodies.json")
