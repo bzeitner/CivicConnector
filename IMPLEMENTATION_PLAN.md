@@ -1,7 +1,10 @@
 # CivicConnector — Implementation Plan
 
 Status: Phase 0, Phase 1, and Phase 2 complete (Legistar connector, Olympia
-pilot). Phase 3 (CivicClerk connector) is next.
+pilot). Phase 3 (CivicClerk connector, Lacey pilot) is implemented and
+awaiting review/merge in PR #4. Phase 4 (Municode connector, Tumwater
+pilot) is implemented in this change, branched from `main` (Phase 0-2)
+since it doesn't depend on Phase 3's code.
 Source: IdeaFlow idea #32 ("Civic-source connector toolkit"), research entry
 #80 (2026-08-10 live platform probe of Legistar/Granicus, CivicClerk, and
 Municode for Olympia/Lacey/Tumwater, WA).
@@ -97,7 +100,7 @@ never a guess.
 - Exit criteria: coverage table equivalent to Phase 2's, plus an explicit
   yes/no finding on `GetMeetingItemMinutesVotes` population.
 
-### Phase 4 — Municode connector (Tumwater pilot)
+### Phase 4 — Municode connector (Tumwater pilot) [done]
 - Enumerate `bc-*` body codes from the Drupal site's per-body views.
 - Page `/meetings3?page=N`, honoring the site's `Crawl-delay: 15`
   `robots.txt` directive (no aggressive polling).
@@ -108,7 +111,22 @@ never a guess.
   HTML-parsing assumptions behind the shared connector interface so
   breakage doesn't propagate.
 - Exit criteria: change detection correctly flags a new or updated agenda
-  PDF for Tumwater without exceeding the crawl-delay budget.
+  PDF for Tumwater without exceeding the crawl-delay budget. **Met**: live
+  run 2026-08-16 against `tumwater-wa.municodemeetings.com` — `list_bodies()`
+  found 9 `bc-*` bodies and `list_meetings()` 25 meetings from one polled
+  page; a real agenda PDF (274,697 bytes) was downloaded and hashed with a
+  ~14.5s gap after the prior request (crawl_delay=15s enforced by
+  `MunicodeConnector._throttle`), and `detect_changes()` correctly
+  classified it as `new` (no prior hash), `unchanged` (matching prior
+  hash), and `changed` (stale prior hash) in three comparisons against the
+  same real bytes. No API surface was found (confirming research entry
+  #80); item-level agenda data (`get_items()`) is out of scope for this
+  phase and returns `[]` rather than guessing. See
+  `civicconnector/connectors/municode.py` and
+  `tests/test_municode_connector.py`.
+- Known site quirk (documented in code): the portal's WAF resets the
+  connection for any `User-Agent` containing a `github.com` URL, regardless
+  of a `Bot` product token; the connector's UA omits the repo URL.
 
 ### Phase 5 — `civic-scraper` evaluation and build-vs-reuse decision
 - Run `biglocalnews/civic-scraper` against Olympia, Lacey, and Tumwater

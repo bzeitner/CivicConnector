@@ -17,11 +17,15 @@ pytest -q
 
 Status: Phase 0 (repo/CI scaffolding), Phase 1 (canonical schema +
 fixture-based contract tests), and Phase 2 (Legistar connector, Olympia
-pilot) are complete. See `civicconnector/models.py` for the schema,
+pilot) are complete. Phase 3 (CivicClerk connector, Lacey pilot) is
+implemented and awaiting review in PR #4. Phase 4 (Municode connector,
+Tumwater pilot) is complete. See `civicconnector/models.py` for the schema,
 `civicconnector/connectors/base.py` for the four-method connector interface,
 `civicconnector/connectors/legistar.py` for the Legistar connector and
-per-event coverage table, and `tests/fixtures/` for pinned live
-Legistar/CivicClerk API responses. Phase 3 (CivicClerk connector) is next.
+per-event coverage table, `civicconnector/connectors/municode.py` for the
+Municode connector (HTML+PDF acquisition, crawl-delay-throttled, PDF
+content-hash change detection), and `tests/fixtures/` for pinned live
+Legistar/CivicClerk/Municode responses.
 
 ## Background
 
