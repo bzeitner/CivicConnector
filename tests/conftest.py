@@ -45,3 +45,18 @@ def legistar_bodies():
 def municode_meetings_page():
     with (FIXTURES_DIR / "municode_meetings_page.html").open() as f:
         return f.read()
+
+
+@pytest.fixture
+def civicclerk_categories():
+    return load_fixture("civicclerk_categories.json")
+
+
+@pytest.fixture
+def civicclerk_events_council():
+    return load_fixture("civicclerk_events_council.json")
+
+
+@pytest.fixture
+def civicclerk_minutes_votes_empty():
+    return load_fixture("civicclerk_minutes_votes_empty.json")

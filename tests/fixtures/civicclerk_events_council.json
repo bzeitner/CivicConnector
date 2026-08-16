@@ -1,0 +1,309 @@
+{
+  "@odata.context": "https://laceywa.api.civicclerk.com/v1/$metadata#Events",
+  "value": [
+    {
+      "id": 1378,
+      "eventName": "City Council Worksession",
+      "eventDate": "2026-08-11T18:00:00Z",
+      "startDateTime": "2026-08-11T18:00:00Z",
+      "isPublished": "Published",
+      "agendaId": 1318,
+      "agendaName": "Council Worksession",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": true,
+      "publishedFiles": [
+        {
+          "fileId": 4110,
+          "type": "Agenda",
+          "name": "2026-08-11 Worksession Agenda",
+          "url": "stream/LACEYWA/b5198ea6-e817-461b-910a-eff21cb4d4d7.pdf",
+          "publishOn": "2026-08-05T14:30:04.087Z"
+        },
+        {
+          "fileId": 4118,
+          "type": "Agenda Packet",
+          "name": "2026-08-11 Worksession Agenda Packet Revised",
+          "url": "stream/LACEYWA/d0d2b590-acf9-4baf-a326-27ab321c11c9.pdf",
+          "publishOn": "2026-08-06T14:59:41.283Z"
+        }
+      ]
+    },
+    {
+      "id": 1365,
+      "eventName": "City Council Meeting Rescheduled to August 3",
+      "eventDate": "2026-08-04T18:00:00Z",
+      "startDateTime": "2026-08-04T18:00:00Z",
+      "isPublished": "Published",
+      "agendaId": 1321,
+      "agendaName": "City Council",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": false,
+      "publishedFiles": [
+        {
+          "fileId": 4094,
+          "type": "Notice",
+          "name": "2026-08-04 Council Reschedule to 2026-08-03",
+          "url": "stream/LACEYWA/8f16142d-f28d-4a92-9159-cf390991e0cc.pdf",
+          "publishOn": "2026-07-29T12:12:48.283Z"
+        }
+      ]
+    },
+    {
+      "id": 1314,
+      "eventName": "City Council Informational Dinner Meeting Rescheduled to August 3",
+      "eventDate": "2026-08-04T16:30:00Z",
+      "startDateTime": "2026-08-04T16:30:00Z",
+      "isPublished": "Published",
+      "agendaId": 1320,
+      "agendaName": "City Council Informational Dinner Meeting",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": false,
+      "publishedFiles": [
+        {
+          "fileId": 4093,
+          "type": "Notice",
+          "name": "2026-08-04 Council Info Dinner to 2026-08-03 Notice",
+          "url": "stream/LACEYWA/c29a5f9f-1516-4cee-a3c0-ae0b9ddb8125.pdf",
+          "publishOn": "2026-07-29T12:19:09.96Z"
+        }
+      ]
+    },
+    {
+      "id": 1559,
+      "eventName": "City Council Meeting",
+      "eventDate": "2026-08-03T18:00:00Z",
+      "startDateTime": "2026-08-03T18:00:00Z",
+      "isPublished": "Published",
+      "agendaId": 1314,
+      "agendaName": "City Council ",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": true,
+      "publishedFiles": [
+        {
+          "fileId": 4100,
+          "type": "Agenda",
+          "name": "2026-08-03 Council Agenda",
+          "url": "stream/LACEYWA/191c9029-13e7-481a-9f27-199dce2eb9e4.pdf",
+          "publishOn": "2026-07-30T16:08:19.187Z"
+        },
+        {
+          "fileId": 4102,
+          "type": "Agenda Packet",
+          "name": "2026-08-03 Council Agenda Packet",
+          "url": "stream/LACEYWA/86731a6d-4bc5-4695-83fb-9315e285a0d6.pdf",
+          "publishOn": "2026-07-30T16:08:19.187Z"
+        },
+        {
+          "fileId": 4091,
+          "type": "Notice",
+          "name": "2026-08-03 Council Notice",
+          "url": "stream/LACEYWA/05c47dc2-a012-44fa-8d29-7547683a3f30.pdf",
+          "publishOn": "2026-07-29T12:13:22.73Z"
+        }
+      ]
+    },
+    {
+      "id": 1560,
+      "eventName": "City Council Informational Dinner Meeting",
+      "eventDate": "2026-08-03T16:30:00Z",
+      "startDateTime": "2026-08-03T16:30:00Z",
+      "isPublished": "Published",
+      "agendaId": 1315,
+      "agendaName": "City Council Informational Dinner Meeting",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": false,
+      "publishedFiles": [
+        {
+          "fileId": 4095,
+          "type": "Agenda",
+          "name": "2026-08-03 Council Info Agenda",
+          "url": "stream/LACEYWA/688372d7-39e1-4486-8271-320b95bfa013.pdf",
+          "publishOn": "2026-07-30T16:11:43.417Z"
+        },
+        {
+          "fileId": 4092,
+          "type": "Notice",
+          "name": "2026-08-03 Council Info Notice",
+          "url": "stream/LACEYWA/9350ef78-d765-47e4-8076-c9c1e7010bb8.pdf",
+          "publishOn": "2026-07-29T12:18:41.1Z"
+        }
+      ]
+    },
+    {
+      "id": 1403,
+      "eventName": "City Council Worksession",
+      "eventDate": "2026-07-28T18:00:00Z",
+      "startDateTime": "2026-07-28T18:00:00Z",
+      "isPublished": "Published",
+      "agendaId": 1309,
+      "agendaName": "Council Worksession",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": true,
+      "publishedFiles": [
+        {
+          "fileId": 4086,
+          "type": "Agenda",
+          "name": "2026-07-28 Worksession Agenda Revised",
+          "url": "stream/LACEYWA/e78e4ca7-7949-4c71-b3fe-99edec40cf3f.pdf",
+          "publishOn": "2026-07-28T15:14:21.917Z"
+        },
+        {
+          "fileId": 4087,
+          "type": "Agenda Packet",
+          "name": "2026-07-28 Worksession Agenda Packet Revised",
+          "url": "stream/LACEYWA/0f9d9b61-409c-4e2d-8cbf-71238044392d.pdf",
+          "publishOn": "2026-07-28T15:14:21.917Z"
+        }
+      ]
+    },
+    {
+      "id": 1390,
+      "eventName": "City Council Meeting",
+      "eventDate": "2026-07-21T18:00:00Z",
+      "startDateTime": "2026-07-21T18:00:00Z",
+      "isPublished": "Published",
+      "agendaId": 1307,
+      "agendaName": "City Council",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": true,
+      "publishedFiles": [
+        {
+          "fileId": 4059,
+          "type": "Agenda",
+          "name": "2026-07-21 Council Agenda",
+          "url": "stream/LACEYWA/586ab44b-707d-4b05-bc4e-0a174bc34c83.pdf",
+          "publishOn": "2026-07-16T10:47:55.323Z"
+        },
+        {
+          "fileId": 4060,
+          "type": "Agenda Packet",
+          "name": "2026-07-21 Council Agenda Packet",
+          "url": "stream/LACEYWA/3f50e147-1af1-4f2c-82e0-aa29776f9a5b.pdf",
+          "publishOn": "2026-07-16T10:47:55.323Z"
+        },
+        {
+          "fileId": 4107,
+          "type": "Minutes",
+          "name": "2026-07-21 Council Minutes Approved",
+          "url": "stream/LACEYWA/229b7788-8470-4154-a025-eae54e96cea0.pdf",
+          "publishOn": "2026-08-04T08:30:16.227Z"
+        }
+      ]
+    },
+    {
+      "id": 1377,
+      "eventName": "City Council Worksession",
+      "eventDate": "2026-07-14T18:00:00Z",
+      "startDateTime": "2026-07-14T18:00:00Z",
+      "isPublished": "Published",
+      "agendaId": 1305,
+      "agendaName": "Council Worksession",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": true,
+      "publishedFiles": [
+        {
+          "fileId": 4049,
+          "type": "Agenda",
+          "name": "2026-07-14 Worksession Agenda",
+          "url": "stream/LACEYWA/f8246504-1c80-4762-87a9-b4bcd692a832.pdf",
+          "publishOn": "2026-07-08T17:15:03.94Z"
+        },
+        {
+          "fileId": 4055,
+          "type": "Agenda Packet",
+          "name": "2026-07-14 Worksession Agenda Packet Corrected",
+          "url": "stream/LACEYWA/a22e55cc-b1b9-4cee-a791-6573fb72913d.pdf",
+          "publishOn": "2026-07-14T16:07:07.31Z"
+        },
+        {
+          "fileId": 4106,
+          "type": "Minutes",
+          "name": "2026-07-14 Worksession Minutes Approved",
+          "url": "stream/LACEYWA/12742a74-aa72-485f-a996-c33e0d140fa5.pdf",
+          "publishOn": "2026-08-04T08:28:27.043Z"
+        }
+      ]
+    },
+    {
+      "id": 1364,
+      "eventName": "City Council Meeting",
+      "eventDate": "2026-07-07T18:00:00Z",
+      "startDateTime": "2026-07-07T18:00:00Z",
+      "isPublished": "Published",
+      "agendaId": 1300,
+      "agendaName": "City Council",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": true,
+      "publishedFiles": [
+        {
+          "fileId": 4041,
+          "type": "Agenda",
+          "name": "2026-07-07 Council Agenda",
+          "url": "stream/LACEYWA/977470e2-339b-4965-8363-f7ce8660549d.pdf",
+          "publishOn": "2026-07-01T13:20:27.313Z"
+        },
+        {
+          "fileId": 4042,
+          "type": "Agenda Packet",
+          "name": "2026-07-07 Council Agenda Packet",
+          "url": "stream/LACEYWA/b71df6ca-58af-4f77-a334-0ef43cd4454a.pdf",
+          "publishOn": "2026-07-01T13:20:27.313Z"
+        },
+        {
+          "fileId": 4073,
+          "type": "Minutes",
+          "name": "2026-07-07 Council Minutes",
+          "url": "stream/LACEYWA/d8453d72-015f-4e33-b40c-d0bfac270e24.pdf",
+          "publishOn": "2026-07-23T09:47:26.633Z"
+        }
+      ]
+    },
+    {
+      "id": 1313,
+      "eventName": "City Council Informational Dinner Meeting",
+      "eventDate": "2026-07-07T16:30:00Z",
+      "startDateTime": "2026-07-07T16:30:00Z",
+      "isPublished": "Published",
+      "agendaId": 1306,
+      "agendaName": "City Council Info Meeting",
+      "categoryName": "City Council",
+      "categoryId": 26,
+      "hasAgenda": true,
+      "hasMedia": false,
+      "publishedFiles": [
+        {
+          "fileId": 4043,
+          "type": "Agenda",
+          "name": "2026-07-07 Council Info Agenda",
+          "url": "stream/LACEYWA/ddb3e2c0-bb5b-4eed-b570-878482d3787c.pdf",
+          "publishOn": "2026-07-01T13:19:31.673Z"
+        },
+        {
+          "fileId": 4072,
+          "type": "Minutes",
+          "name": "2026-07-07 Informational Minutes",
+          "url": "stream/LACEYWA/c76455d7-a058-44d9-86a0-df2ed12efba2.pdf",
+          "publishOn": "2026-07-23T09:44:55.377Z"
+        }
+      ]
+    }
+  ]
+}
