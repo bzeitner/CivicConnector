@@ -39,3 +39,9 @@ def civicclerk_events():
 @pytest.fixture
 def legistar_bodies():
     return load_fixture("legistar_bodies.json")
+
+
+@pytest.fixture
+def municode_meetings_page():
+    with (FIXTURES_DIR / "municode_meetings_page.html").open() as f:
+        return f.read()
