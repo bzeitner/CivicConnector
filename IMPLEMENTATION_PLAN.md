@@ -1,6 +1,6 @@
 # CivicConnector — Implementation Plan
 
-Status: draft, Phase 0 in progress.
+Status: Phase 0 and Phase 1 complete (PR #2). Phase 2 (Legistar connector) is next.
 Source: IdeaFlow idea #32 ("Civic-source connector toolkit"), research entry
 #80 (2026-08-10 live platform probe of Legistar/Granicus, CivicClerk, and
 Municode for Olympia/Lacey/Tumwater, WA).
@@ -45,7 +45,7 @@ never a guess.
 
 ## Phases
 
-### Phase 0 — Repository & environment setup
+### Phase 0 — Repository & environment setup [done]
 - Establish repo scaffolding (this change): README, license, `.gitignore`,
   this plan.
 - Decide language/tooling: Python (matches `civic-scraper`,
@@ -55,7 +55,7 @@ never a guess.
   (`pytest`), and CI (lint + test on push).
 - Exit criteria: `pytest` runs green on an empty test suite in CI.
 
-### Phase 1 — Canonical schema + contract tests
+### Phase 1 — Canonical schema + contract tests [done]
 - Implement the schema above as typed dataclasses/models.
 - Capture and pin fixture JSON for Legistar and CivicClerk responses
   documented in research entry #80 (events, eventitems, votes, matter
