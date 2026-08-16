@@ -8,6 +8,19 @@ canonical schema with provenance and change detection.
 See [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) for the phased build
 plan and current status.
 
+## Development
+
+```
+pip install -e .[dev]
+pytest -q
+```
+
+Status: Phase 0 (repo/CI scaffolding) and Phase 1 (canonical schema +
+fixture-based contract tests) are complete. See `civicconnector/models.py`
+for the schema, `civicconnector/connectors/base.py` for the four-method
+connector interface, and `tests/fixtures/` for pinned live Legistar/CivicClerk
+API responses. Phase 2 (Legistar connector) is next.
+
 ## Background
 
 This toolkit exists to support hyperlocal civic-reporting projects (starting
