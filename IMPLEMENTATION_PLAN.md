@@ -1,13 +1,10 @@
 # CivicConnector — Implementation Plan
 
-Status: Phase 0, Phase 1, Phase 2 (Legistar connector, Olympia pilot), and
-Phase 4 (Municode connector, Tumwater pilot) are complete and merged.
-Phase 3 (CivicClerk connector, Lacey pilot) is implemented and awaiting
-review/merge in PR #4. Phase 5 (`civic-scraper` build-vs-reuse evaluation)
-is complete in this change, branched from `main` since it evaluates the
-already-merged Legistar/Municode connectors plus live probes of Lacey's
-CivicClerk site directly and doesn't depend on PR #4's code; see
-`PHASE5_DECISION.md`.
+Status: Phase 0, Phase 1, Phase 2 (Legistar connector, Olympia pilot),
+Phase 3 (CivicClerk connector, Lacey pilot), Phase 4 (Municode connector,
+Tumwater pilot), and Phase 5 (`civic-scraper` build-vs-reuse evaluation;
+see `PHASE5_DECISION.md`) are all complete and merged. Phase 6
+(change-detection/agenda-diff service) is next.
 Source: IdeaFlow idea #32 ("Civic-source connector toolkit"), research entry
 #80 (2026-08-10 live platform probe of Legistar/Granicus, CivicClerk, and
 Municode for Olympia/Lacey/Tumwater, WA).
@@ -91,17 +88,31 @@ never a guess.
   items_with_action: 1/7/5/0/0; roll_call_flagged: 1/2/1/1/1). See
   `civicconnector/connectors/legistar.py` and `tests/test_legistar_connector.py`.
 
-### Phase 3 — CivicClerk connector (Lacey pilot)
-- Implement the same four-method interface against
-  `laceywa.api.civicclerk.com/v1`.
-- Verify `GetMeetingFileStream(plainText=true)` end-to-end for agenda/
-  packet text extraction (bypassing PDF parsing).
-- Resolve the highest-uncertainty item in the toolkit: whether
-  `GetMeetingItemMinutesVotes` is actually populated for Lacey. If yes,
-  vote extraction here becomes a function call, not an LLM task; if no,
-  drop "vote extraction" from CivicClerk's promise and document the gap.
-- Exit criteria: coverage table equivalent to Phase 2's, plus an explicit
-  yes/no finding on `GetMeetingItemMinutesVotes` population.
+### Phase 3 — CivicClerk connector (Lacey pilot) [done]
+- Implemented `list_bodies` (via `EventCategories`), `list_meetings`,
+  `get_items`, `get_documents` against `laceywa.api.civicclerk.com/v1`.
+- `GetMeetingFileStream(fileId=..., plainText=true)` verified live
+  end-to-end (event 1390, fileId 4059): HTTP 200, real agenda plain text,
+  no PDF/OCR step needed. Exposed as `get_document_text()`.
+- Resolved the highest-uncertainty item in the toolkit: whether
+  `GetMeetingItemMinutesVotes` is actually populated for Lacey.
+  **Finding: NO.** The bound function `Meetings/GetMeetingItemMinutesVotes(id=...)`
+  responds HTTP 200 (proving it's callable per its `$metadata` signature)
+  but returned an empty `value: []` for all 7 distinct Lacey meetings
+  tried, using both event ids and agendaIds as `id`. No GET-accessible way
+  to enumerate the item-level ids the parameter most likely expects was
+  found: `Meetings(id)` 404s, `Meetings?$filter=id eq ...` 404s, and the
+  `Sections` entity set (which models agenda structure) only accepts POST
+  (405 on GET) — outside this API's discoverable read surface. Per the
+  plan, "vote extraction" is dropped from CivicClerk's promise;
+  `get_items()` returns `[]` rather than guessing, and no `Vote` records
+  are ever produced by this connector. See
+  `civicconnector/connectors/civicclerk.py`'s module docstring for the
+  full trail and `tests/test_civicclerk_connector.py` for the pinned
+  regression test asserting `items_with_votes == 0`.
+- Exit criteria: **Met** (with a documented negative finding, not a
+  positive one) — coverage table equivalent to Phase 2's shape
+  (`coverage_table()`), plus the explicit yes/no finding above.
 
 ### Phase 4 — Municode connector (Tumwater pilot) [done]
 - Enumerate `bc-*` body codes from the Drupal site's per-body views.
