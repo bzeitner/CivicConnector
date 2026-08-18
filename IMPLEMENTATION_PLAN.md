@@ -1,10 +1,13 @@
 # CivicConnector — Implementation Plan
 
-Status: Phase 0, Phase 1, and Phase 2 complete (Legistar connector, Olympia
-pilot). Phase 3 (CivicClerk connector, Lacey pilot) is implemented and
-awaiting review/merge in PR #4. Phase 4 (Municode connector, Tumwater
-pilot) is implemented in this change, branched from `main` (Phase 0-2)
-since it doesn't depend on Phase 3's code.
+Status: Phase 0, Phase 1, Phase 2 (Legistar connector, Olympia pilot), and
+Phase 4 (Municode connector, Tumwater pilot) are complete and merged.
+Phase 3 (CivicClerk connector, Lacey pilot) is implemented and awaiting
+review/merge in PR #4. Phase 5 (`civic-scraper` build-vs-reuse evaluation)
+is complete in this change, branched from `main` since it evaluates the
+already-merged Legistar/Municode connectors plus live probes of Lacey's
+CivicClerk site directly and doesn't depend on PR #4's code; see
+`PHASE5_DECISION.md`.
 Source: IdeaFlow idea #32 ("Civic-source connector toolkit"), research entry
 #80 (2026-08-10 live platform probe of Legistar/Granicus, CivicClerk, and
 Municode for Olympia/Lacey/Tumwater, WA).
@@ -128,15 +131,23 @@ never a guess.
   connection for any `User-Agent` containing a `github.com` URL, regardless
   of a `Bot` product token; the connector's UA omits the repo URL.
 
-### Phase 5 — `civic-scraper` evaluation and build-vs-reuse decision
-- Run `biglocalnews/civic-scraper` against Olympia, Lacey, and Tumwater
-  side by side with the Phase 2–4 connectors.
-- Compare on document coverage and maintenance cost, not just raw field
-  parity.
-- Make an explicit decision: keep `civic-scraper` as the acquisition base
-  layer and this toolkit as the normalization/structure layer, or diverge
-  with a documented reason. Do not silently drift into a rewrite.
+### Phase 5 — `civic-scraper` evaluation and build-vs-reuse decision [done]
+- Ran `biglocalnews/civic-scraper` (PyPI `civic-scraper==1.1.0`) against
+  Olympia, Lacey, and Tumwater side by side with the Phase 2/4 connectors
+  (Phase 3's CivicClerk connector, PR #4, not yet merged, so Lacey's
+  CivicClerk API was probed directly for this comparison instead).
+- Compared on document coverage and maintenance cost, not just raw field
+  parity: Legistar (works, but document-links only — no items/actions/
+  votes); CivicClerk (fails against the live Lacey portal — targets a
+  retired ASP.NET UI); Municode (unsupported — no scraper matches
+  `municodemeetings.com` at all).
+- **Decision: diverge.** Keep this toolkit's own three native connectors
+  as the acquisition layer for all three pilot jurisdictions; do not add
+  `civic-scraper` as a dependency. Full rationale, live evidence, and the
+  reproducible evaluation script: see `PHASE5_DECISION.md` and
+  `scripts/phase5_civic_scraper_eval.py`.
 - Exit criteria: written decision + rationale committed to this repo.
+  **Met**: `PHASE5_DECISION.md`.
 
 ### Phase 6 — Change-detection / agenda-diff service
 - Add a service that compares successive `content_hash` values per
