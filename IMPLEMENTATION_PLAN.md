@@ -2,9 +2,10 @@
 
 Status: Phase 0, Phase 1, Phase 2 (Legistar connector, Olympia pilot),
 Phase 3 (CivicClerk connector, Lacey pilot), Phase 4 (Municode connector,
-Tumwater pilot), and Phase 5 (`civic-scraper` build-vs-reuse evaluation;
-see `PHASE5_DECISION.md`) are all complete and merged. Phase 6
-(change-detection/agenda-diff service) is next.
+Tumwater pilot), Phase 5 (`civic-scraper` build-vs-reuse evaluation;
+see `PHASE5_DECISION.md`), and Phase 6 (change-detection/agenda-diff
+service) are all complete and merged. Phase 7 (coverage scorecard &
+confidence/provenance reporting) is next.
 Source: IdeaFlow idea #32 ("Civic-source connector toolkit"), research entry
 #80 (2026-08-10 live platform probe of Legistar/Granicus, CivicClerk, and
 Municode for Olympia/Lacey/Tumwater, WA).
@@ -160,15 +161,32 @@ never a guess.
 - Exit criteria: written decision + rationale committed to this repo.
   **Met**: `PHASE5_DECISION.md`.
 
-### Phase 6 — Change-detection / agenda-diff service
-- Add a service that compares successive `content_hash` values per
-  meeting/item list and emits structured diff events ("item 7.B added",
-  "amended", "pulled since last posting").
-- This is the signal no vendor platform surfaces natively and is called
-  out in idea #32's research as a differentiated feature, not a
-  side-effect of scraping.
-- Exit criteria: diff events generated correctly across at least two
-  successive polls for each of the three pilot jurisdictions.
+### Phase 6 — Change-detection / agenda-diff service [done]
+- Generalized the document-level hash-and-compare primitive introduced for
+  Municode in Phase 4 (`hash_bytes`/`detect_changes`) to two levels in a new
+  `civicconnector/diff.py`, shared by all three connectors:
+  - Item-level (`hash_item`/`detect_agenda_changes`): diffs a meeting's
+    `AgendaItem` list across polls, classifying each `native_id` as
+    `added`, `amended`, `unchanged`, or `pulled` (present previously, absent
+    now — pulled since last posting). Content fields only; provenance
+    fields (`action_source`/`confidence`) are excluded so a connector
+    backfilling them later doesn't spuriously register as "amended".
+  - Meeting-level (`hash_meeting`/`detect_meeting_changes`): diffs a
+    jurisdiction's `Meeting` list across polls (`new`/`changed`/`unchanged`
+    per `native_id`). This is the only agenda-revision signal available for
+    CivicClerk and Municode, whose `get_items()` return `[]` (Phases 3-4);
+    Legistar gets both levels since its `get_items()` is populated.
+- Both functions are stateless, matching the Phase 4 `detect_changes()`
+  contract: the caller supplies the previous poll's `{native_id: hash}` map
+  (`hashes_from_items`/`hashes_from_meetings` build it) and persists the
+  returned hashes for the next poll — this toolkit has no storage layer of
+  its own.
+- Exit criteria: **Met** — `tests/test_diff.py` exercises two successive
+  polls against the pinned fixtures for all three pilot jurisdictions
+  (Legistar `legistar_eventitems`/`legistar_events`, CivicClerk
+  `civicclerk_events`, Municode `municode_meetings_page`), asserting
+  `added`/`amended`/`unchanged`/`pulled` (item level, Legistar) and
+  `new`/`changed`/`unchanged` (meeting level, all three).
 
 ### Phase 7 — Coverage scorecard & confidence/provenance reporting
 - Per jurisdiction, compute: % of meetings detected before they occur,
