@@ -18,24 +18,27 @@ pytest -q
 Status: Phase 0 (repo/CI scaffolding), Phase 1 (canonical schema +
 fixture-based contract tests), Phase 2 (Legistar connector, Olympia
 pilot), Phase 3 (CivicClerk connector, Lacey pilot), Phase 4 (Municode
-connector, Tumwater pilot), and Phase 5 (`civic-scraper` build-vs-reuse
-evaluation) are all complete: this toolkit's own connectors remain the
-acquisition layer for all three pilot cities — see `PHASE5_DECISION.md`.
+connector, Tumwater pilot), Phase 5 (`civic-scraper` build-vs-reuse
+evaluation), and Phase 6 (change-detection/agenda-diff service) are all
+complete: this toolkit's own connectors remain the acquisition layer for
+all three pilot cities — see `PHASE5_DECISION.md`.
 See `civicconnector/models.py` for the schema,
 `civicconnector/connectors/base.py` for the four-method connector interface,
 `civicconnector/connectors/legistar.py` for the Legistar connector and
 per-event coverage table, `civicconnector/connectors/civicclerk.py` for the
 CivicClerk connector, `civicconnector/connectors/municode.py` for the
 Municode connector (HTML+PDF acquisition, crawl-delay-throttled, PDF
-content-hash change detection), and `tests/fixtures/` for pinned live
-Legistar/CivicClerk/Municode responses.
+content-hash change detection), `civicconnector/diff.py` for the
+meeting- and item-level agenda-diff service shared by all three connectors,
+and `tests/fixtures/` for pinned live Legistar/CivicClerk/Municode
+responses.
 
 Phase 3 finding: `GetMeetingItemMinutesVotes` is **not** confirmed
 populated/reachable for Lacey — see `civicconnector/connectors/civicclerk.py`'s
 module docstring for the full live-verification trail. Documents, by
 contrast, work well: `GetMeetingFileStream(plainText=true)` returns real
-agenda text with no PDF/OCR step. Phase 6 (change-detection/agenda-diff
-service) is next.
+agenda text with no PDF/OCR step. Phase 7 (coverage scorecard &
+confidence/provenance reporting) is next.
 
 ## Background
 
