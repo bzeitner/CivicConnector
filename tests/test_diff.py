@@ -166,3 +166,25 @@ def test_detect_meeting_changes_first_poll_is_all_new():
 def test_hash_meeting_is_stable_for_identical_content():
     meeting = Meeting(body_id="b1", native_id="m1", starts_at=datetime(2026, 1, 1))
     assert hash_meeting(meeting) == hash_meeting(replace(meeting))
+
+
+def test_detect_meeting_changes_flags_stable_url_content_revision():
+    """Regression for PR #7 review (idea #32, research entry #287): a
+    reposted agenda whose bytes change at a stable agenda_url/status (e.g.
+    Municode, where document hashing is the existing change-detection
+    primitive) must be flagged 'changed', not misclassified as
+    'unchanged' just because the URL and status didn't move."""
+    m1 = Meeting(
+        body_id="b1",
+        native_id="m1",
+        starts_at=datetime(2026, 1, 1),
+        agenda_url="https://example.test/agenda.pdf",
+        status="Final",
+        content_hash="old-bytes",
+    )
+    m2 = replace(m1, content_hash="new-bytes")
+
+    prev_hashes = hashes_from_meetings([m1])
+    changes = detect_meeting_changes([m2], prev_hashes)
+
+    assert changes == [MeetingChange(native_id="m1", status="changed", content_hash=hash_meeting(m2))]

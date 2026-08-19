@@ -39,8 +39,12 @@ _ITEM_DIFF_FIELDS = ("seq", "number", "title", "matter_id", "action_name", "pass
 
 # Fields that define a meeting's substance for diff purposes. ``status`` is
 # included because e.g. Legistar's ``EventAgendaStatusName`` flips from
-# "Draft" to "Final" as an agenda is posted/amended.
-_MEETING_DIFF_FIELDS = ("agenda_url", "minutes_url", "video_url", "status")
+# "Draft" to "Final" as an agenda is posted/amended. ``content_hash`` is
+# included so a connector that hashes the fetched document bytes (e.g.
+# Municode's ``hash_bytes``) surfaces a same-URL content revision as
+# "changed" here too -- without it, a reposted agenda whose bytes change at
+# a stable URL is misclassified as "unchanged" (idea #32, PR #7 review).
+_MEETING_DIFF_FIELDS = ("agenda_url", "minutes_url", "video_url", "status", "content_hash")
 
 
 def _hash_fields(obj: object, fields: tuple) -> str:
