@@ -6,7 +6,9 @@ CivicClerk, Municode), normalizing agenda, vote, and document data into one
 canonical schema with provenance and change detection.
 
 See [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) for the phased build
-plan and current status.
+plan and current status, and **[USAGE.md](USAGE.md) for a downstream-consumer
+quickstart** — install, pull data, detect changes, and the open follow-ups —
+without reading the plan.
 
 ## Development
 
@@ -20,10 +22,13 @@ fixture-based contract tests), Phase 2 (Legistar connector, Olympia
 pilot), Phase 3 (CivicClerk connector, Lacey pilot), Phase 4 (Municode
 connector, Tumwater pilot), Phase 5 (`civic-scraper` build-vs-reuse
 evaluation), Phase 6 (change-detection/agenda-diff service), and Phase 7
-(coverage scorecard & confidence/provenance reporting) are all complete:
-this toolkit's own connectors remain the acquisition layer for all three
-pilot cities — see `PHASE5_DECISION.md`. Phase 8 (packaging, docs, and
-pilot handoff) is next.
+(coverage scorecard & confidence/provenance reporting), and Phase 8
+(packaging, docs, and pilot handoff) are all complete: this toolkit's own
+connectors remain the acquisition layer for all three pilot cities — see
+`PHASE5_DECISION.md`. See `USAGE.md` for the downstream-consumer quickstart
+and the recorded open follow-ups (BoardDocs/PrimeGov connectors, Legistar
+vote wiring, CivicClerk/Municode item extraction, the still-unresolved CI
+blocker).
 See `civicconnector/models.py` for the schema,
 `civicconnector/connectors/base.py` for the four-method connector interface,
 `civicconnector/connectors/legistar.py` for the Legistar connector and
