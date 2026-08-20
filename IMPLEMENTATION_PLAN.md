@@ -3,9 +3,10 @@
 Status: Phase 0, Phase 1, Phase 2 (Legistar connector, Olympia pilot),
 Phase 3 (CivicClerk connector, Lacey pilot), Phase 4 (Municode connector,
 Tumwater pilot), Phase 5 (`civic-scraper` build-vs-reuse evaluation;
-see `PHASE5_DECISION.md`), and Phase 6 (change-detection/agenda-diff
-service) are all complete and merged. Phase 7 (coverage scorecard &
-confidence/provenance reporting) is next.
+see `PHASE5_DECISION.md`), Phase 6 (change-detection/agenda-diff
+service), and Phase 7 (coverage scorecard & confidence/provenance
+reporting; see `PHASE7_SCORECARD.md`) are all complete and merged.
+Phase 8 (packaging, docs, and pilot handoff) is next.
 Source: IdeaFlow idea #32 ("Civic-source connector toolkit"), research entry
 #80 (2026-08-10 live platform probe of Legistar/Granicus, CivicClerk, and
 Municode for Olympia/Lacey/Tumwater, WA).
@@ -188,18 +189,31 @@ never a guess.
   `added`/`amended`/`unchanged`/`pulled` (item level, Legistar) and
   `new`/`changed`/`unchanged` (meeting level, all three).
 
-### Phase 7 — Coverage scorecard & confidence/provenance reporting
+### Phase 7 — Coverage scorecard & confidence/provenance reporting [done]
 - Per jurisdiction, compute: % of meetings detected before they occur,
   median lag from meeting to structured action, % of items with a
-  decision, % with named votes.
+  decision, % with named votes. Implemented in `civicconnector/scorecard.py`;
+  the two poll-history measures (`pct_meetings_detected_early`,
+  `median_lag_to_structured_action`) require multi-poll history this
+  toolkit doesn't collect yet (no storage layer, per `diff.py`'s
+  stateless-caller pattern) and correctly return `None` rather than a
+  guessed number against the single-snapshot pulls available today; see
+  `PHASE7_SCORECARD.md`.
 - Surface `action_source`/`confidence` on every record rather than
-  presenting uniform certainty.
+  presenting uniform certainty. **Already done** structurally since Phase
+  1 (`AgendaItem.action_source`/`confidence`); this scorecard adds an
+  aggregate view on top, not a new per-item field.
 - Apply the plan's kill/scope criteria: if `civic-scraper` + the two
   native APIs cover ≥90% of documents across the three pilot cities, stop
   building new connectors and invest further effort in the
   extraction/diff layer instead of a fourth platform.
-- Exit criteria: scorecard produced for Olympia/Lacey/Tumwater; kill/scope
-  decision recorded in this repo.
+- Exit criteria: **Met** — scorecard produced for Olympia/Lacey/Tumwater
+  (`scripts/phase7_scorecard_run.py`, `tests/test_scorecard.py`); kill/scope
+  decision recorded in `PHASE7_SCORECARD.md`: document coverage is 3/3
+  (100%, above the 90% threshold) via this toolkit's own three connectors,
+  so the decision is to **stop building new connectors** and invest
+  further effort in item/vote-level extraction for CivicClerk and
+  Municode instead of a fourth platform.
 
 ### Phase 8 — Packaging, docs, and pilot handoff
 - Package the toolkit for consumption by IdeaFlow idea #30 (South Sound
