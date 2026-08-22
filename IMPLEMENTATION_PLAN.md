@@ -4,9 +4,9 @@ Status: Phase 0, Phase 1, Phase 2 (Legistar connector, Olympia pilot),
 Phase 3 (CivicClerk connector, Lacey pilot), Phase 4 (Municode connector,
 Tumwater pilot), Phase 5 (`civic-scraper` build-vs-reuse evaluation;
 see `PHASE5_DECISION.md`), Phase 6 (change-detection/agenda-diff
-service), and Phase 7 (coverage scorecard & confidence/provenance
-reporting; see `PHASE7_SCORECARD.md`) are all complete and merged.
-Phase 8 (packaging, docs, and pilot handoff) is next.
+service), Phase 7 (coverage scorecard & confidence/provenance
+reporting; see `PHASE7_SCORECARD.md`), and Phase 8 (packaging, docs, and
+pilot handoff; see `USAGE.md`) are all complete and merged.
 Source: IdeaFlow idea #32 ("Civic-source connector toolkit"), research entry
 #80 (2026-08-10 live platform probe of Legistar/Granicus, CivicClerk, and
 Municode for Olympia/Lacey/Tumwater, WA).
@@ -215,17 +215,23 @@ never a guess.
   further effort in item/vote-level extraction for CivicClerk and
   Municode instead of a fourth platform.
 
-### Phase 8 — Packaging, docs, and pilot handoff
+### Phase 8 — Packaging, docs, and pilot handoff [done]
 - Package the toolkit for consumption by IdeaFlow idea #30 (South Sound
   civic brief pilot) and idea #4 (Hyperlocal sites).
-- Document setup, connector interface, schema, and the coverage
-  scorecard's meaning for a downstream (non-author) engineer.
-- Record open follow-ups explicitly: BoardDocs/PrimeGov connectors for
-  school-district coverage, and any platforms where the kill/scope
-  criteria in Phase 7 recommend against further connector work.
-- Exit criteria: a downstream consumer (idea #30) can call the toolkit's
-  public interface to pull structured Meeting/AgendaItem/Vote/Document
-  records for Olympia, Lacey, and Tumwater without reading this plan.
+- Documented setup, connector interface, schema, and the coverage
+  scorecard's meaning for a downstream (non-author) engineer: see
+  `USAGE.md`.
+- Recorded open follow-ups explicitly in `USAGE.md`: BoardDocs/PrimeGov
+  connectors for school-district coverage, Legistar Vote-record wiring,
+  CivicClerk/Municode item-level extraction (the platforms where the
+  kill/scope criteria in Phase 7 recommend against further *connector*
+  work but where the *extraction* gap remains), and the still-unresolved
+  CI workflow-scope blocker.
+- Exit criteria: **Met** — `USAGE.md` documents the full public interface
+  (schema, connector construction, change detection, scorecard) with
+  runnable examples, so a downstream consumer (idea #30) can pull
+  structured Meeting/AgendaItem/Vote/Document records for Olympia, Lacey,
+  and Tumwater without reading this plan.
 
 ## Open questions carried from research entry #80
 
